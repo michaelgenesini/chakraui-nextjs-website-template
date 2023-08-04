@@ -6,44 +6,44 @@ import {
   Button,
   Stack,
   Collapse,
-  Icon,
   Link,
+  Icon,
   Popover,
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react"
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-} from '@chakra-ui/icons';
-import { NavItem, NAV_ITEMS } from '@/constants/navbar';
+} from "@chakra-ui/icons"
+import { NavItem, NAV_ITEMS } from "@/constants/navbar"
 
 export const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('gray.800', 'white');
-  const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+  const linkColor = "brand.text"
+  const linkHoverColor = "brand.textHover"
+  const popoverContentBgColor = useColorModeValue("white", "gray.800")
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack alignItems="center" direction="row" spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={'hover'} placement={'bottom-start'}>
+          <Popover trigger="hover" placement="bottom-start">
             <PopoverTrigger>
               <Link
                 p={2}
-                href={navItem.href ?? '#'}
-                fontSize={'sm'}
+                href={navItem.href ?? "#"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
-                  textDecoration: 'none',
+                  textDecoration: "none",
                   color: linkHoverColor,
-                }}>
+                }}
+              >
                 {navItem.label}
               </Link>
             </PopoverTrigger>
@@ -51,11 +51,12 @@ export const DesktopNav = () => {
             {navItem.children && (
               <PopoverContent
                 border={0}
-                boxShadow={'xl'}
+                boxShadow="xl"
                 bg={popoverContentBgColor}
                 p={4}
-                rounded={'xl'}
-                minW={'sm'}>
+                rounded="xl"
+                minW="sm"
+              >
                 <Stack>
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
@@ -67,39 +68,40 @@ export const DesktopNav = () => {
         </Box>
       ))}
     </Stack>
-  );
-};
+  )
+}
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-  return (
-    <Link
-      href={href}
-      role={'group'}
-      display={'block'}
-      p={2}
-      rounded={'md'}
-      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-      <Stack direction={'row'} align={'center'}>
-        <Box>
-          <Text
-            transition={'all .3s ease'}
-            _groupHover={{ color: 'pink.400' }}
-            fontWeight={500}>
-            {label}
-          </Text>
-          <Text fontSize={'sm'}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={'all .3s ease'}
-          transform={'translateX(-10px)'}
-          opacity={0}
-          _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
-          justify={'flex-end'}
-          align={'center'}
-          flex={1}>
-          <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Link>
-  );
-};
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => (
+  <Link
+    href={href}
+    role="group"
+    display="block"
+    p={2}
+    rounded="md"
+    _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+  >
+    <Stack direction="row" align="center">
+      <Box>
+        <Text
+          transition="all .3s ease"
+          _groupHover={{ color: "pink.400" }}
+          fontWeight={500}
+        >
+          {label}
+        </Text>
+        <Text fontSize="sm">{subLabel}</Text>
+      </Box>
+      <Flex
+        transition="all .3s ease"
+        transform="translateX(-10px)"
+        opacity={0}
+        _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
+        justify="flex-end"
+        align="center"
+        flex={1}
+      >
+        <Icon color="pink.400" w={5} h={5} as={ChevronRightIcon} />
+      </Flex>
+    </Stack>
+  </Link>
+)
